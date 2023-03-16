@@ -1,0 +1,49 @@
+  <!-- search 
+  <div class=" view_left_side ">
+    <i class="fa-solid fa-filter view_lef view_left_side color " (click)="viewtrack()"></i> 
+  </div>
+  <div class="left_side {{visible}} ">
+
+    <div class="input-group input-group-sm mt-3 shadow rounded">
+      <span  class="p-2 search ">
+        <form action="#" class="d-flex">
+          <i class="fa-solid fa-magnifying-glass p-2 fa-solid-style color" (click)="displaysearch()"></i>
+          <input @fade *ngIf="setwidth=='setwidth'" type="text" class=" input " name="qusetuinsearch"
+          (keyup.enter)="search($event)"
+          [(ngModel)]="ser"
+           >  
+        </form>
+    </span>
+    </div>
+
+
+    <div class=" mt-3 shadow bg-white rounded container-firter">
+      filter title
+     <div class="d-flex justify-content-between align-items-center p-2 filter-title ">
+       <div class="d-flex" >
+         <i class="fa-solid fa-filter fa-solid-style p-2 color "></i>
+         <p class="p-filter color ">Filter</p>
+       </div>
+       <P class=" arrow arrow-{{alighnfilter}} color " (click)="setalighnfilter($event)"> ► </P>
+     </div>
+     <div @showfilter *ngIf="alighnfilter == 'down'" class="p-2 container filters">
+       <div class=" d-flex justify-content-between align-items-center">
+        <input  type="text" class=" input p-2 m-3" name="searchFilterTrack"  [(ngModel)]="searchFilterTrack" > 
+
+       </div>        
+
+       <div class="d-flex flex-column" *ngFor=" let subtrack of subtracks.data ; let i = index " >
+         <div class="d-flex container "  *ngIf= "subtrack.name.toLowerCase().includes(searchFilterTrack)" >
+          <span class="rdo" > <input value=" {{subtrack.id }}" type="radio" name="subtrack_id" (change)="showfilter($event)"></span>
+           <label for="{{i}}" class="lbl sub-tarck">{{subtrack.name}}</label>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+
+
+
+  
+  
+   -->

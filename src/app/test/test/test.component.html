@@ -1,0 +1,70 @@
+
+
+
+
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10 col-lg-10">
+            <div class="border">
+                <div class="question bg-white p-3 border-bottom">
+                    <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                        <h4>MCQ Quiz</h4><span></span>
+                        <countdown #cd [config]="{leftTime:1800}" ></countdown>
+                    </div>
+                </div>
+                <div class="question bg-white p-3 border-bottom"   *ngFor="let question of test; let i=index">
+                    <div class="d-flex flex-row align-items-center question-title">
+                        <span class="text-danger">Q.{{i+1}} </span>
+                        <h5 class="mt-1 ml-2">{{question.body}}?</h5>
+                        
+        
+                    </div>
+                    <span *ngIf="isAnswered(i) && isSubmited" class="text-danger"> *You Must answer this Question</span>
+                    <div class="ans ml-2" *ngFor="let answer of question.answers ; let ii=index">
+                        <label class="radio"> <input type="radio" name="{{i}}" value="{{answer.id}}" (change)="choose(i,answer.id)" > <span>{{answer.body}}</span>
+                        </label>
+                    </div>
+                    
+                </div>
+
+                <div class="p-3  justify-content-end d-flex ">
+                    <button (click)="sendAnswers()" class="btn px-4  py-2">Submit</button>
+                </div>
+                
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
+
+<div class="container">
+    <div *ngFor="let question of currentExam.questions; let i=index" >
+  
+      <div class="question bg-white p-3 border-bottom">
+        <div class="d-flex flex-row  question-title align-items-center">
+          <h3 class="text-danger">Q. {{question.id}}</h3>
+          <h5 class="mt-1 ml-2">{{question.text}}</h5>
+  
+        </div>
+  
+            
+        <div  >
+          <div class="ans ml-2"  *ngFor="let answer of question.options ; let i=index">
+            <label class="radio">
+              <span>{{answer.text}}</span>
+            </label>
+            <input type="radio" name="{{answer.id}}" value="{{answer.id}}" (change)="choose(question.id,answer.id)" >
+          </div>
+  
+  
+      </div>
+  </div> -->

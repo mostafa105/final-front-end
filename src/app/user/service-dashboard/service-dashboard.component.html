@@ -1,0 +1,83 @@
+<!-- start dashboard section -->
+<section class="service-dashboard">
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered shadow rounded mb-5  ">
+                <thead>
+                <tr class="" >
+                    
+                    <th colspan="4" class=" text-center"><h4>UBCOMING SERVICE</h4></th>
+                    
+                </tr></thead>
+              
+                <tr class="text-center">
+                    <th>Date</th>
+                    <th>Service</th>
+                    <th>Track</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            
+                <tbody class="p-5">
+                        <tr class="text-center" *ngFor = "let order of userOrdersList">
+                          
+                            <td>{{order.appointment}}</td>
+                            <td>{{order.service_name}}</td>
+                            <td>{{order.track_name}}</td>
+                            <td>{{order.status}}</td>
+                             
+                                <td class="ms-2">
+                              
+                                <button class=" btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="toDeleteOrder(order.id)" >Cancel</button>
+                                <button class=" btn btn-success m-2" [routerLink]="['/user/service/notifications' , order.id]">Notifications</button>
+
+                                <button class="btn btn-info" (click) = "completedOrder(order.id)">Completed </button>
+                            </td>
+
+
+                    
+
+             <!-- Modal for delete post ----------------------------------------------------------------->
+
+     
+ 
+                        </tr>
+
+
+
+       
+                    
+            
+</tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog   modal-dialog-centered ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="deleteModalLabel" >Delete order </h1>
+              <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+      
+              <div class="text-center">
+              <i class="fa-solid fa-circle-exclamation text-danger fs-3"></i>
+              <p class="text-black-50">
+                Are you sure you want to delete this order ?
+              </p>
+              <div *ngIf = "message " class = "alert alert-success mb-2 w-100 text-center">
+                <small class=" " *ngFor = "let msg of message">{{msg.message}}</small>
+           </div>
+              </div>
+            </div>
+            <div class="modal-footer" >
+              <button type="button" class="btn confirm-btn" data-bs-dismiss="modal">Close</button>
+              <button  type="button" class="btn  close-btn" (click) = "deleteUserOrder()" data-bs-dismiss="modal">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>            
+
+</section>

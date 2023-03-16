@@ -1,0 +1,138 @@
+<!-- start banner section--- -->
+<section class="banner ">
+    <div class="container">
+    <div class="row justify-content-between">
+        <div class="col-lg-6 mt-5  d-flex align-items-center">
+        <div class="banner-content ">
+            <h2>Ask About Service From Here</h2>
+            <p class = "text-black-50">Welcome to the developer zone site, our site includes a large selection of instructors who have high experience in their specialties, so ask for the service you want with confidence, and you will get what you want.
+
+            </p>
+            <button class="btn main-btn"> See More</button>
+
+            <!-- <buton > See More </buton> -->
+        </div></div>
+        <div class="col-lg-6">
+        <div class="banner-img w-100">
+        <img src="../assets/images/services2.jpg" alt="" class="w-75">
+        </div>
+    </div>
+    </div>
+      
+    </div>
+</section>
+
+
+
+
+
+
+<!-- end banner section------------------------- -->
+
+<section class="services-cards mt-5">
+  <div class="container">
+<div class="row">
+  <div class="solution_cards_box sol_card_top_3 col-lg-4 mt-5" *ngFor="let service of serviceList">
+    <div class="solution_card text-center"  [routerLink]="['/user/service/home' , service.id]" >
+      <div class="hover_color_bubble"></div>
+   
+     <div class="solu_title">       
+        <h3>{{service.name}}</h3>
+      </div>
+      <div class="solu_description">
+        <p class="text-black-50">
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+        </p>
+        
+       
+    
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#service-form">
+          Buy Now
+          </button>
+
+       
+      </div>
+
+    
+    </div>
+  
+  </div>
+
+  
+
+
+
+
+
+
+
+<div class="modal " id="service-form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center">Service Form</h1>
+        <!-- <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        <i class="fa-solid fa-xmark text-white btn-close" data-bs-dismiss="modal"
+        aria-label="Close" ></i>
+      </div>
+      <div class="modal-body">
+       
+
+        <form action="" [formGroup]="serviceForm" (ngSubmit)="submitForm(serviceForm)">
+          <!-- //choose service  -->
+        
+         
+          <!-- //choose track -->
+          <div class="mb-3">
+          <label for="track_id">Choose Track</label>
+ 
+          <select class="form-select" aria-label="Default select example"  formControlName="track_id"
+          >
+            <option value = "{{track.id}}" *ngFor = "let track of dropdownListTrack ; let i = index" >{{track.name}}</option>
+      
+          </select>
+        
+          <div   *ngIf="serviceForm.get('track_id')?.errors!= null && serviceForm.get('track_id')?.touched" class="alert alert-danger p-1 mt-1">
+            <p *ngIf="serviceForm.controls['track_id'].hasError('required')"> 
+            
+              track name field is required
+            
+            </p>
+           </div>
+           </div>
+          
+         
+        
+        
+         <div class="mb-3">
+          <label for="appointment">Choose The Date</label>
+          <input type="datetime-local" formControlName="appointment" class="form-control">
+          <div   *ngIf="serviceForm.get('appointment')?.errors!= null && serviceForm.get('appointment')?.touched" class="alert alert-danger p-1 mt-1">
+            <p *ngIf="serviceForm.controls['appointment'].hasError('required')"> 
+            
+              Date field is required
+            
+            </p>
+           </div>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="close-btn" data-bs-dismiss="modal">Close</button>
+         <button type="submit" class="confirm-btn"   data-bs-dismiss="modal">Submit</button>
+      </div>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div> 
+
+         <!-- <ng-multiselect-dropdown
+[placeholder]="'choose track'"
+[settings]="dropdownSettingsTrack"
+[data]="dropdownListTrack"
+[(ngModel)]="selectedItems"
+(onSelect)="onItemSelect($event)"
+(onSelectAll)="onSelectAll($event)"
+formControlName="order"
+>
+</ng-multiselect-dropdown> -->

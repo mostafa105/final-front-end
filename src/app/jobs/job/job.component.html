@@ -1,0 +1,113 @@
+
+<section class="jobBanner">
+  <div class="container">
+    <div class="row justify-content-between">
+ <div class="col-lg-5  d-flex align-items-center">
+  <div class="content  ">
+  <h2>Start Your Jobs According To Track From Here</h2>
+  </div>
+ </div>
+
+ <div class="col-lg-6 col-sm-12 p-1 d-flex justify-content-center align-items-center">
+  <div>
+ <img src="../../../assets/images/myjob.avif" alt="" srcset=""  class="w-100">
+  </div>
+</div></div></div>
+</section>
+<section class="devZon">
+<div class="container">
+<div class="row">
+   
+</div>
+
+
+
+
+
+</div>
+
+
+
+</section>
+<section class="orders">
+    <div class="container">
+        
+        <div class="row">
+            
+            <!-- start -->
+            <div *ngIf="jobs.length == 0" class="mb-4">
+             
+              <h2 class="text-center">There Is No Jobs Untill Now</h2>
+                <img src="../../../assets/images/no offers.jpeg" alt="" >
+              
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 "  *ngFor="let job of jobs; let i = index">
+                <div class="order-card rounded shadow   " >
+                  <!-- <p>{{job.service_name}}</p> -->
+                    <div class="top-card position-relative">
+                        <div class="card-img w-100  ">
+                            <img src="https://www.shoppingcentreawards.com/wp-content/uploads/2015/06/people-img7.jpg" alt="" class="">
+                        </div>
+                    </div>
+
+                    <div class="bottom-card-content mt-5 p-5">
+                           <h3>Ali Ahmed</h3>
+                           <h5>{{job.service_name}}</h5>
+                           <p>Track : {{job.track_name}}</p>
+                           
+                           <button  [routerLink]="['/jobs' , job.id]" 
+            data-bs-toggle="modal" data-bs-target="#job" data-bs-whatever="@mdo"> Contact</button>
+                    
+                    </div>
+                </div>
+            </div><!-- end -->
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- i jobApplay----------------------------------------------------------- -->
+<div class="img_modal">
+    <!-- start -->
+  <div class="modal fade" id="job" tabindex="-1" aria-labelledby="img" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="nameLabel"> Job Application Form  </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  
+          ></button>
+        </div>
+        <form   [formGroup]="jobForm"  (ngSubmit)="jobApplay(jobForm)">
+        <div class="modal-body">
+        
+          <!-- <div class="pb-2"        *ngIf="jobForm.get('cove_letter')?.errors!= null && jobForm.get('cove_letter')?.touched"  >
+            <small class="text-danger p-1"  *ngIf="jobForm.controls['cove_letter'].hasError('required')" >filed is required </small>
+           </div>
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">Cover Letter</label>
+            <textarea class="form-control" id="message-text"  formControlName="cover_letter"></textarea>
+          </div> -->
+
+          <div class="pb-2"        *ngIf="jobForm.get('price')?.errors!= null && jobForm.get('price')?.touched"  >
+            <small class="text-danger p-1"  *ngIf="jobForm.controls['price'].hasError('required')" >filed is required </small>
+           </div>
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">price</label>
+            <input type = "text "class="form-control" id="message-text"  formControlName="price">$
+          </div>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-save">Send message</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  

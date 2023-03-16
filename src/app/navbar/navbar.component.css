@@ -1,0 +1,39 @@
+/* navbar section style**************************************************** */
+.navbar{
+  background-color: var(--main-color) !important;
+}
+.navbar a{
+  padding-left: 1rem !important;
+}
+.navbar a:hover{
+  color: var(--sec-color) !important;
+  transition: var(--main-transition) !important;
+}
+.navbar .dropdown-menu {
+  background-color: var(--main-color) !important;
+}
+.navbar .dropdown-menu a{
+ background-color: transparent !important;
+}
+
+.navbar .logo {
+
+  font-size:1.5rem;
+  /* font-weight: bold; */
+  font-family: 'Courgette', cursive;
+  background:linear-gradient(45deg  , var(--main-color-alt) ,var(--sec-color)  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+.navbar-toggler{
+  background-color: var(--sec-color);
+}
+
+
+
+.active
+{
+background:var(--sec-color)  ;
+border-radius: 4px;
+}

@@ -1,0 +1,96 @@
+
+
+.<ng-container>
+
+
+
+<div class="row  border border-1 rounded  mt-5  py-5 px-4  ">
+
+    <div class="col-12 position-relative row">
+        <div class="edit2     position-absolute col-1">
+            <i class="fa-solid fa-plus"         data-bs-toggle="modal" data-bs-target="#certificateAdd" data-bs-whatever="@mdo"></i>
+          </div>
+    </div>
+   
+    <h2 class="text-center pb-2">Certificate</h2>
+
+<!-- start -->
+<div class=" col-lg-3 col-md-6 col-12 p-1"  *ngFor = "let certificate of certificates">
+  <div class="position-relative">
+     
+      <i class="fa-solid fa-trash position-absolute delete"         data-bs-toggle="modal" data-bs-target="#certificateDelete" data-bs-whatever="@mdo"></i>
+  <img   src="http://127.0.0.1:8000/storage/imgs/{{certificate.certificate}}"  alt="" srcset="" class="w-100 " height="200rem rounded">
+  </div>
+  
+  
+      <!-- end -->
+
+          <!-- delete certificate modal -->
+    <div class="modal fade delete-modal" id="certificateDelete" tabindex="-1" aria-labelledby="certificateDelete" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+           
+            <button type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+         <div class="modal-body py-0">
+         
+              <h5 class="text-center "> <i class="fa-sharp fa-solid fa-circle-exclamation mt-5"></i>    <br> Are you sure you want to delete this certificate ?</h5>
+        
+         </div>
+         
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-delete"  
+            (click) = "deleteCertificate(certificate.id)"  data-bs-dismiss="modal" >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+      </div>  
+</div>
+</ng-container>
+
+
+
+
+<!-- certificate-------------------------------------------------------------- -->
+<div class="img_modal">
+    <!-- start -->
+  <div class="modal fade" id="certificateAdd" tabindex="-1" aria-labelledby="certificateAdd" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="nameLabel">Uploade Certificate  </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form   [formGroup]="certificateForm"  (ngSubmit)="addCertificate(certificateForm)"  >
+        <div class="modal-body">
+        
+          <div class="pb-2"        *ngIf="certificateForm.get('certificate')?.errors!= null && certificateForm.get('certificate')?.touched"  >
+            <small class="text-danger p-1"  *ngIf="certificateForm.controls['certificate'].hasError('required')" >filed is required </small>
+           </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Uplode certificate</label>
+            <input class="form-control" type="file" id="formFile"   formControlName="certificate"    class="btn btn-save"  
+            (change)="selectImg($event)"
+         
+           >
+          </div>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-save">Send message</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- start -->
+  
+  
+    
+    

@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+:root {
+  --main-color: rgb(3, 37, 65);
+  --main-color-alt: #1787e0;
+  --section-background: #ececec;
+  --main-transition: 0.3s ease;
+  --sec-color : #1ed5a9;
+  /* #1ed5a9 */
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Source Sans Pro', sans-serif; */
+}
+
+ul{
+  list-style: none;
+}
+h1{
+  font-size: 2.8rem;
+  color: var(--main-color);
+  font-weight: bold;
+  line-height: 1.75rem;
+}
+h2 {
+  font-size: 2.25rem;
+  color: var(--main-color);
+  line-height: 1.9rem;
+}
+h3{
+  font-size: 1.8rem;
+  line-height: 1.9rem;
+}
+
+p{
+    /* line-height: 1.75rem; */
+    font-size: 1rem;
+ 
+}
+a{
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-block;
+  color: #fff !important;
+}
+section{
+  padding-top: 6rem;
+}
+footer{
+  background-color: var(--main-color);
+}
+button{
+  outline: none;
+  border: none;
+  color: #fff;
+}
+
+.main-btn{
+  background: var(--main-color);
+  color:#fff;
+  padding: 0.4rem 1rem;
+}
+
+/* media query */
+@media (min-width:300px) {
+  html{
+        font-size: 12px;
+  }
+
+  img{
+      width: 80%;
+  }
+
+
+}
+
+@media (min-width:567px) {
+  html{
+        font-size: 13px;
+  }
+  img{
+      width: 70%;
+  }
+
+}
+@media (min-width:768px){
+  html{
+      font-size: 14px;
+  }
+  img{
+      width: 80%;
+  }
+
+}
+@media (min-width:992px){
+  html{
+      font-size: 16px;
+  }
+  img{
+      width: 100%;
+  }
+}
+/* style for modal */
+
+.modal-header{
+  background-color: var(--main-color);
+  color: #fff !important;
+ 
+}
+.modal-header h1{
+  color:#fff !important;
+  font-weight: bold !important;
+}
+.confirm-btn{
+  background-color: var(--main-color);
+  color: #fff;
+  font-weight: bold;
+  padding: 0.4rem 1rem ;
+  /* margin-right: 1rem !important; */
+}
+.close-btn{
+  background-color: var(--sec-color);
+  color:#fff ;
+  font-weight: bold;
+  padding: 0.4rem 1rem ;
+  /* margin-left: ; */
+
+}
+.modal-header button{
+  color: #fff !important;
+  background-color: #fff !important;
+}
+.gradient-color{
+  background:linear-gradient(45deg  , var(--main-color-alt) ,var(--sec-color)  );
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+}

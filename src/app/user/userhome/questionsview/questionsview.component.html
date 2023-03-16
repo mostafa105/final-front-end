@@ -1,0 +1,308 @@
+<div class="container-xl mb-5">
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+          
+            <!-- search  -->
+            <!-- <div class=" view_left_side "> -->
+            <i class="fa-solid fa-filter view_lef view_left_side color " (click)="viewtrack()"></i> 
+            <!-- </div> -->
+            <div class="left_side {{visible}} ">
+                <div class="input-group input-group-sm mt-3 shadow rounded">
+                    <span  class="p-2 search ">
+                        <form action="#" class="d-flex">
+                            <i class="fa-solid fa-magnifying-glass p-2 fa-solid-style color" (click)="displaysearch()"></i>
+                            <input @fade *ngIf="setwidth=='setwidth'" type="text" class=" inputt " name="qusetuinsearch"
+                            (keyup.enter)="search($event)"
+                            [(ngModel)]="ser"
+                                            >  
+                        </form>
+                    </span>
+                </div>
+                <div class=" mt-3 shadow bg-white rounded container-firter">
+                    <!-- filter title -->
+                    <div class="d-flex justify-content-between align-items-center p-2 filter-title ">
+                        <div class="d-flex" >
+                            <i class="fa-solid fa-filter fa-solid-style p-2 color "></i>
+                                <p class="p-filter color ">Filter</p>
+                        </div>
+                        <P class=" arrow arrow-{{alighnfilter}} color " (click)="setalighnfilter($event)"> ► </P>
+                    </div>
+                    <div @showfilter *ngIf="alighnfilter == 'down'" class="p-2 container filters">
+                        <div class=" d-flex justify-content-between align-items-center">
+                            <input  type="text" class=" inputt p-2 m-3" name="searchFilterTrack"  [(ngModel)]="searchFilterTrack" > 
+                        </div>        
+                        <div class="d-flex flex-column" *ngFor=" let subtrack of subtracks.data ; let i = index " >
+                            <div class="d-flex container "  *ngIf= "subtrack.name.toLowerCase().includes(searchFilterTrack)" >
+                                <span class="rdo" > <input value=" {{subtrack.id }}" type="radio" name="subtrack_id" (change)="showfilter($event)"></span>
+                                <label for="{{i}}" class="lbl sub-tarck">{{subtrack.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-9">
+            <!-- add question -->
+            <div class="shadow p-3 mb-3 mt-3 bg-body rounded" *ngIf="user_logened.role == 'user'" >
+                <input readonly type="text" class="addques" placeholder="write your question" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+            </div>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"  >
+                <div class=" text-center modal-dialog  ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="modal-title" id="staticBackdropLabel"> ADD QUESTION</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">    
+                            <p @fadein class="successadd text-start" *ngIf="success">Success</p>
+                            <div>
+                                <form [formGroup]="formAddQuestion" (ngSubmit)="savequestion()" >
+                                    <div>
+                                        <div class="text-danger text-start mt-2" *ngIf="formAddQuestion.get('question_body')?.errors !=null
+                                        && formAddQuestion.get('question_body')?.touched " >
+                                        <!-- <span *ngIf="formAddQuestion.controls['question_body'].hasError('required')">Please Enter Your Question </span> -->
+                                        <ng-container *ngIf="formAddQuestion.controls['question_body'].hasError('required'); else elseTemplate">
+                                            <span >Please Enter Your Question </span>
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                            <span *ngIf="formAddQuestion.controls['question_body'].hasError('minlength') ">You must not enter less than 10 characters </span>
+                                        </ng-template> 
+                                    </div> 
+                                        <input type="hidden" formControlName="user_id"  >
+                                        <textarea appTextareaautosize rows="2" [minRows]="2" [maxRows]="8" 
+                                        placeholder="Type your question here..."
+                                        class="text-input inputadd mb-2"
+                                        formControlName="question_body"
+                                        ></textarea>
+                                    </div> 
+                                    <div   class="subtrack-contanir mb-2 p-2" >
+                                        <!-- <input  type="text" class=" inputadd  " name="searchFilterTrack"  [(ngModel)]="searchFilterTrack" placeholder="Search" > -->
+                                        <div class=" text-danger text-start mt-2" *ngIf="formAddQuestion.get('subtrack_id')?.errors !=null && formAddQuestion.get('subtrack_id')?.touched" >
+                                            <span>Please chosen a sub track  </span>
+                                        </div> 
+                                        <select class="inputadd" formControlName="subtrack_id" > 
+                                            <option value="">select the feil.....</option>
+                                            <option *ngFor=" let subtrack of subtracks?.data | filter:searchFilterTrack; let i = index "  value="{{subtrack.id}}"  >{{subtrack.name}}</option>  
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer" >
+            
+                                        <button class="main-btn p-2"  data-bs-dismiss="modal" type="submit" >Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end add question -->
+            <!-- questions start -->
+            <div   class="postsContainer  d-flex flex-column justify-content-center align-items-center " *ngFor="let question
+             of list | paginate
+             : {
+                 itemsPerPage: tableSize,
+                 currentPage: page,
+                 totalItems: count
+               };  let i = index ; trackBy:trackquetion ">
+                <!-- start -->
+
+              
+                <div class="_question mt-3  shadow p-3   bg-white rounded">
+                    <div class="img_question d-flex justify-content-between">
+                        <div class="img d-flex align-items-center mb-2" >
+                            <div class="img_question_wrapper">
+                                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" srcset="">
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span >{{question.user.name}}</span>
+                                <span style="background-color: var(--section-background);">{{question.subtrack.name}}</span>
+                            </div>       
+                        </div>
+                        <div class="dropdown"*ngIf="question.user_id ==user_logened.id &&  question.qcomment.length < 1 ">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-pen pt-1 align-self-end " ></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><div class="dropdown-item  " (click)="visibleupdatequestion(question.id,question.subtrack_name,question.subtrack_id,question.question_body)">Edit</div></li>
+                                <li><span class="dropdown-item  " (click)='deletequestionbyid(question.id)' >Delete</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container-update-question d-flex flex-column align-items-center p-2" *ngIf="textupdatequestion==question.id" >
+                        <span class="align-self-end p-3 spanbtn " (click)="visibleupdatequestion(question.id,question.subtrack_name,question.subtrack_id,question.question_body) " >x</span>
+                        <textarea  appTextareaautosize rows="5" [minRows]="5" [maxRows]="15" name="textupdatequestion"
+                        [(ngModel)]="bodyupdatequestion" 
+                        placeholder="Updating here..."
+                        class="text-input mt-3 mb-3 "
+                        ></textarea>
+                        <input type="text" class="subtrack mb-2"  [(ngModel)]="subtrack_name" disabled>
+                        <div class="addsubtrack mb-2 " >
+                            <input  type="text" class=" input mb-2 " name="searchFilterTrack"  [(ngModel)]="searchFilterTrack" placeholder="Search" >
+                            <div   class="subtrack-contanir mb-2 p-2" >
+                                <div *ngFor=" let subtrack of subtracks?.data ; let i = index " >
+                                    <span *ngIf="subtrack.name.toLowerCase().includes(searchFilterTrack)" class="subtrackname d-flex" >
+                                        <span  (dblclick)="addsubtrack(subtrack.id,subtrack.name)" >{{subtrack.name}}</span>
+                                    </span>                        
+                                </div>
+                            </div>
+                        </div>
+                        <button class="main-btn p-1 mb-3 "[disabled]="!bodyupdatequestion ||!subtrack_id || !subtrack_name" (click)="updatequestionbyid(question.id)" > Update</button>
+                    </div>
+                    <p class="py-2 container " >{{question.question_body}}</p>
+                    <hr>
+                    <div class="event d-flex justify-content-between px-5">
+                        <i class="fa-solid fa-comment" (click)="getcomments(question?.id)" ><span class="ps-1">{{question.qcomment.length}}</span></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <hr>
+                    <!-- end question -->
+                    <!-- comments start -->
+                    <div class="_comments mt-3 " >
+                        <div class="container" *ngFor="let qcomment of question?.qcomment let ic = index ; trackBy:trackqcomment " >
+                            <div *ngIf="question?.id==qcomment?.question_id && SQComments ==question?.id">
+                                <div class="img_comment d-flex justify-content-between" >
+                                    <div class="d-flex align-items-center mb-2" >
+                                        <div class="img_comment_wrapper">
+                                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" srcset="">
+                                        </div>
+                                        <span >{{qcomment.instructor.user?.name}}</span>
+                                    </div>
+                                    <div class="dropdown"*ngIf="qcomment.instructor_id==user_logened.id">
+                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-pen pt-1 align-self-end " ></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><span class="dropdown-item  " (click)="visiabletextupdateqcomment(qcomment?.id,qcomment.qcomment_body)">Edit</span></li>
+                                            <li><span class="dropdown-item  "(click)="deleteqcommentbyid(qcomment.id)">Delete</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="container-update-question d-flex flex-column align-items-center p-2" *ngIf="textupdateqcomment==qcomment?.id" >
+                                    <span class="align-self-end p-3 spanbtn " (click)="visiabletextupdateqcomment(qcomment.id,qcomment.qcomment_body) " >x</span>
+                                    <textarea  appTextareaautosize rows="5" [minRows]="5" [maxRows]="15" name="textupdatequestion"
+                                    [(ngModel)]="bodyupdateqcomment" 
+                                    placeholder="Updating here..."
+                                    class="text-input mt-3 mb-3 "
+                                    ></textarea>
+                                    <button class="main-btn p-1 mb-3 " [disabled]="!bodyupdateqcomment" (click)="updateqcommentbyid(qcomment?.id)" > Update</button>
+                                </div>
+                                <p class="py-2 container">{{qcomment?.qcomment_body}}</p>
+                                <hr>
+                                <div class="event d-flex justify-content-between px-5">
+                                    <i class="fa-solid fa-comment comment" (click)="getrepleis(qcomment.id)"><span class="ps-1">  {{qcomment.reply.length}}</span></i>
+                                    <i class="fa-solid fa-heart comment  "><span style="color: black;" class="ps-1">  {{qcomment.like.length}}</span></i>
+                                </div>
+                                <hr>
+                                <div class=" container " *ngFor="let reply of qcomment?.reply; let ir = index ; trackBy:trackreply " >
+                                    {{qcomment.reply.id}}
+                                    <div class=" _replies m-3  p-2" *ngIf="qcomment?.id==reply.qcomment_id && SQCReplies == qcomment?.id"  >
+                                        <div >
+                                            <div class="img_reply d-flex justify-content-between">
+                                                <div class="d-flex align-items-center mb-2" >
+                                                    <div class="img_reply_wrapper">
+                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" srcset="">
+                                                    </div>
+                                                    <span >{{reply.user.name}}</span>
+                                                </div>
+                                                <div class="dropdown" *ngIf="reply.user_id ==user_logened.id">
+                                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa-solid fa-pen pt-1 align-self-end " ></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><span class="dropdown-item  " (click)="visiabletextupdatereply(reply.id ,reply.reply_body)">Edit</span></li>
+                                                        <li><span class="dropdown-item  " (click)="deletereplybyid(reply.id)">Delete</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="container-update-question d-flex flex-column align-items-center p-2" *ngIf="textupdatereply==reply.id" >
+                                                <span class="align-self-end p-3 spanbtn " (click)="visiabletextupdatereply(reply.id,reply.reply_body) " >x</span>
+                                                <textarea  appTextareaautosize rows="5" [minRows]="5" [maxRows]="15" name="textupdatequestion"
+                                                [(ngModel)]="bodyupdatereply" 
+                                                placeholder="Updating here..."
+                                                class="text-input mt-3 mb-3 "
+                                                ></textarea>
+                                                <button class="main-btn p-1 mb-3 " [disabled]="!bodyupdatereply" (click)="updatereplybyid(reply.id)" > Update</button>
+                                            </div>
+                                            <p class="py-2 container ">{{reply.reply_body}}</p>
+                                            <hr>
+                                            <div class="event d-flex justify-content-between px-5">
+                                                <i class="fa-solid fa-heart reply"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="user_logened.role=='user'">
+                                    <textarea appTextareaautosize rows="2" [minRows]="2" [maxRows]="15" 
+                                    placeholder="Type your anwser here..."
+                                    class="text-input"
+                                    [(ngModel)]="bodynewreply[qcomment.id]"
+                                    (keyup.enter)="addnewreply(user_logened.id,qcomment.id)"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div *ngIf="user_logened.role=='instructor'">
+                            <textarea appTextareaautosize rows="2" [minRows]="2" [maxRows]="15" 
+                            placeholder="Type your anwser here..."
+                            class="text-input"
+                            [(ngModel)]="bodynewqcomment[question.id]"
+                   
+                            (keyup.enter)="addnewqcomment(user_logened.id,question.id)"
+                            ></textarea>
+                        </div>
+                    </div><!--end-->
+                </div><!--end posts-->  
+            </div>
+            <div class="d-flex justify-content-center pagi">
+                <pagination-controls
+                  previousLabel="Prev"
+                  nextLabel="Next"
+                  (pageChange)="onTableDataChange($event)"
+                >
+                </pagination-controls>
+              </div>
+        </div>
+    </div> 
+</div>  
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
+
+

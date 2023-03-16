@@ -1,0 +1,86 @@
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-4">
+  <div class="container-fluid">
+    <a class="navbar-brand logo"routerLink="/landingPage">DevZone</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse me-auto" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"   *ngIf="isLogin">
+          <a class="nav-link " aria-current="page" routerLink="/user/Questions"  >Questions</a>
+        </li>
+        <li class="nav-item"   *ngIf="isLogin">
+          <a class="nav-link " aria-current="page" routerLink="/user/Posts"  >Posts</a>
+        </li>
+        <li class="nav-item"  *ngIf="isLogin && role">
+          <a class="nav-link" routerLink="/profile"  >Profile</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isLogin && !role">
+          <a class="nav-link dropdown-toggle" routerLink="/user/service/home" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <ul class="dropdown-menu">
+             <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="dropdown-item" routerLink="/user/service/dashboard"  >My Orders</a>
+         
+        </li>
+        <li><hr class="dropdown-divider"></li>
+             <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="dropdown-item" routerLink="/user/service/notifications"  >Offers</a>
+        </li>
+         
+        
+          </ul>
+        </li>
+
+        <li class="nav-item"   *ngIf="isLogin && !role">
+          <a class="nav-link " aria-current="page" routerLink="/user/Student/Profile"  >User profile</a>
+        </li> 
+        <!-- <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="nav-link" routerLink="/user/service/home" >Services</a>
+        </li>
+
+        <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="nav-link" routerLink="/user/service/dashboard"  >Services Dashboard</a>
+        </li>
+
+        <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="nav-link" routerLink="/user/service/notifications"  >Services Notifications</a>
+        </li> -->
+
+        <li class="nav-item"  *ngIf="isLogin && !role">
+          <a class="nav-link" routerLink="/user/service/all-orders"  >all orders</a>
+        </li>
+
+        <li class="nav-item"  *ngIf="isLogin">
+          <a class="nav-link" routerLink="/jobs"  >jobs</a>
+        </li>
+
+        <li class="nav-item"  *ngIf="isLogin">
+          <a class="nav-link" routerLink="/user/userHome"  >user home</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="!isLogin">
+
+          <a   class="nav-link" routerLink="/login"   >Log in</a>
+        </li>
+        <li class="nav-item " *ngIf="!isLogin">
+          <a  class="nav-link" routerLink="/beforeReg" >Register</a>
+        </li>
+
+
+
+        <li class="nav-item " *ngIf="isLogin">
+          <a  class="nav-link"   (click)="logout()"   *ngIf="isLogin"  >Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

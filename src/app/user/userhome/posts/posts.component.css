@@ -1,0 +1,235 @@
+
+
+
+/* trackfilter */
+
+@media screen and (max-width: 765px)  {
+    .false{
+       display: none;
+    }
+   .view_left_side{
+       position: relative;
+       right: 15px;
+       display: inline-block;
+       font-size: x-large;
+       background-color: var(--main-color);
+       padding: .6rem;
+       border-radius: 50%;
+       width: 3.5rem;
+       height: 3.5rem;
+       cursor: pointer;
+   }
+  
+   .true{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    left: 0;
+    display: inline-block;
+    
+  }
+  }
+  
+  @media screen and (min-width: 765px)  {
+  
+   .view_left_side{
+    display: none;
+   }
+  }
+  
+  
+  /* .view_left_side{
+    display: none;
+  } */
+  
+  .inputt , .search ,.filter-box {
+     width: 100%;
+  }
+  .arrow-down{
+    rotate: 90deg;
+    font-size: xx-small;
+    cursor: pointer;
+    margin: 0;
+  }
+  .arrow-right{
+    rotate:0deg;
+    font-size: xx-small;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .search{
+    background-color:   var(--main-color) ;
+  }
+  
+  .color{
+    background: linear-gradient(to right  , var(--main-color-alt) ,var(--sec-color) ) ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .fa-solid-style{
+    border-bottom: 1px solid  var(--main-color) ;
+    border-top: 1px solid  var(--main-color) ;
+    border-left: 1px solid  var(--main-color) ;
+  }
+  
+  .inputt{
+     border: 1px solid rgba(123, 122, 122, 0.222)  ;
+     border-radius: 20px;
+  }
+  
+ 
+    
+  .addques{
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+    padding: .5rem;
+  }
+  
+  
+  .modal-body{
+  position:relative;
+  }
+  .success{
+  background-color:rgb(8, 164, 8);
+  color: white;
+  position:absolute;
+  width:100%;
+  }
+  
+  .modal-header , .btn-close{
+    background-color: var(--main-color);
+    color: white;
+    /* color: var(--section-background); */
+  }
+  textarea{
+    resize:none ;
+    padding: .6rem;
+    overflow: auto;
+  }
+  
+  
+  .inputadd{
+    border: 1px solid rgba(123, 122, 122, 0.222)  ;
+    width: 100%;
+    padding:.3rem;
+    color: black;
+  }
+  
+  
+  button{
+    display:inline-block;
+    padding: .6rem;
+    font-weight: bold;
+    margin-right: .5rem;
+  }
+  
+  /* question view */
+  img{
+    width: 100%;
+    }
+  
+    .fa-solid {
+      cursor: pointer;
+  
+    }
+  
+    .spanbtn{
+      cursor: pointer;
+    }
+    
+    .main-btn{
+      display: inline-block;
+      width:10rem;
+    }
+    .img_question span{
+      font-size: 1rem;
+    }
+    ._question{
+      width: 100%;
+      
+    }
+  
+   .img_question_wrapper{
+    max-width: 5rem !important;
+    min-width:  5rem !important;
+    max-height: 5rem !important; 
+    min-height: 5rem!important; 
+    border-radius: 50%;
+    object-fit: cover;
+    outline: 2px solid #eee;
+    margin-right: .6rem;
+    overflow: hidden;
+   }
+
+   .dropdown-item{
+    color: black !important;
+    cursor: pointer;
+   }
+  
+   .container-update-question{
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    background-color: var(--section-background);
+    
+   }
+   .img_comment span{
+    font-size: 1rem;
+  }
+  ._comments{
+    width: 90%;
+    background-color: var(--section-background);
+    border-radius: 20px;
+  }
+  
+  .img_comment_wrapper{
+  max-width: 3.5rem !important;
+  min-width:  3.5rem !important;
+  max-height: 3.5rem !important; 
+  min-height: 3.5rem!important; 
+  border-radius: 50%;
+  object-fit: cover;
+  outline: 2px solid #eee;
+  margin-right: .6rem;
+  overflow: hidden;
+  }
+  
+
+  
+
+  
+  .comment{
+    font-size: small;
+  }
+  
+
+  .comment-seprate{
+    border: 4px solid white;
+    border-radius: 20px;
+  
+  }
+  
+  .text-input {
+    padding: 6px 10px;
+    color: #333;
+    border: 1px solid #444;
+    border-radius: 6px;
+    width: 100%;
+    resize: none; /* hide browser provided resize handles */
+    overflow-y: overlay;
+    line-height: 20px; /* equal to avgLineHeight in controller */
+    -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* hide scrollbar in Firefox */
+  }
+  
+  .text-input::-webkit-scrollbar {
+    display: none; /* hide scrollbar in Chrome and variants */
+  }
+
+
+
+  
+  

@@ -1,0 +1,17 @@
+
+:root {
+    --main-color: rgb(3, 37, 65);
+    --main-color-alt: #1787e0;
+    --section-background: #ececec;
+    --main-transition: 0.3s ease;
+    --sec-color : #1ed5a9;
+    /* #1ed5a9 */
+  }
+.service-dashboard table {
+    padding: 2rem !important; 
+    background-color: #fff;
+}
+
+footer{
+    background:  linear-gradient(45deg , var(--main-color-alt) ,var(--sec-color) );
+}
